@@ -3,44 +3,45 @@
 
 ExemploSenaiContext context = new ExemploSenaiContext();
 
-bool logincorreto = false;
-bool senhacorreta = false;
+
 
 while(true)
 {
-    Console.Clear();
-    Console.WriteLine("1 - Login, 2 - Senha, 3 - Sair");
+    Console.WriteLine("1 - Login, 2 - Registrar, 3 - Sair");
     string num = Console.ReadLine();
     if(num == "1")
     {
-        Console.Clear();
+        Console.WriteLine("usuario:");
         string login = Console.ReadLine();
-        foreach(var nome in context.Usuarios)
+        Console.WriteLine("senha:");
+        string senha = Console.ReadLine();
+        foreach(var usuario in context.Usuarios)
         {
-            if(login == nome.Nome)
+            if(usuario.Nome == login && usuario.Senha == senha)
             {
-                logincorreto = true;
-                if(logincorreto == true && senhacorreta == true)
-                {
-                Console.WriteLine("login efetuado com sucesso!");
-                }
+                Console.WriteLine("Login efetuado com sucesso");
             }
         }
     }
     else if(num == "2")
     {
-        Console.Clear();
-        string senha  = Console.ReadLine();
-        foreach(var senha1 in context.Usuarios)
+        Console.Write("usuario:");
+        string usuarioRegistro = Console.ReadLine();
+        Console.WriteLine("senha");
+        string senhaRegistro = Console.ReadLine();
+        Console.WriteLine("Confirmar senha");
+        string confirmarSenhaRegistro = Console.ReadLine();
+        if(senhaRegistro != confirmarSenhaRegistro)
+            Console.WriteLine("as senhas são diferentes");
+        else
         {
-            if(senha1.Senha == senha)
-            {
-                senhacorreta = true;
-            }
-            if(logincorreto == true && senhacorreta == true)
-            {
-                Console.WriteLine("login efetuado com sucesso!");
-            }
+                    Usuario usr = new Usuario();
+                    usr.Nome = usuarioRegistro;
+                    usr.Senha = senhaRegistro;
+
+                    context.Add(usr);
+                    context.SaveChanges();
+        
         }
     }
     else if (num == "3")
@@ -52,8 +53,4 @@ while(true)
 
     }
     
-}
-if(logincorreto == true && senhacorreta == true)
-{
-    Console.WriteLine("login efetuado com sucesso!");
 }
