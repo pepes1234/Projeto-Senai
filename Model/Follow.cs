@@ -5,11 +5,11 @@ namespace Projeto_Senai.Model
 {
     public partial class Follow
     {
-        public int Idsegue { get; set; }
-        public int? SeguindoId { get; set; }
-        public int? SeguidoId { get; set; }
+        public int Id { get; set; }
+        public int? Seguindo { get; set; }
+        public int? Seguido { get; set; }
 
-        public virtual Usuario Seguido { get; set; }
-        public virtual Usuario Seguindo { get; set; }
+        public virtual Usuario SeguidoNavigation { get; set; }
+        public virtual Usuario SeguindoNavigation { get; set; }
     }
 }

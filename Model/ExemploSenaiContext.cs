@@ -25,7 +25,7 @@ namespace Projeto_Senai.Model
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=SNCCH01LABF121\\TEW_SQLEXPRESS;Initial Catalog=ExemploSenai;Integrated Security=True");
+                optionsBuilder.UseSqlServer("Data Source=DESKTOP-HFCS9QS\\SQLEXPRESS;Initial Catalog=ExemploSenai;Integrated Security=True");
             }
         }
 
@@ -33,26 +33,19 @@ namespace Projeto_Senai.Model
         {
             modelBuilder.Entity<Follow>(entity =>
             {
-                entity.HasKey(e => e.Idsegue)
-                    .HasName("PK__Follow__C1C692AC98E37B1F");
-
                 entity.ToTable("Follow");
 
-                entity.Property(e => e.Idsegue).HasColumnName("IDsegue");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
-                entity.Property(e => e.SeguidoId).HasColumnName("SeguidoID");
+                entity.HasOne(d => d.SeguidoNavigation)
+                    .WithMany(p => p.FollowSeguidoNavigations)
+                    .HasForeignKey(d => d.Seguido)
+                    .HasConstraintName("FK__Follow__Seguido__2A4B4B5E");
 
-                entity.Property(e => e.SeguindoId).HasColumnName("SeguindoID");
-
-                entity.HasOne(d => d.Seguido)
-                    .WithMany(p => p.FollowSeguidos)
-                    .HasForeignKey(d => d.SeguidoId)
-                    .HasConstraintName("FK__Follow__SeguidoI__164452B1");
-
-                entity.HasOne(d => d.Seguindo)
-                    .WithMany(p => p.FollowSeguindos)
-                    .HasForeignKey(d => d.SeguindoId)
-                    .HasConstraintName("FK__Follow__Seguindo__15502E78");
+                entity.HasOne(d => d.SeguindoNavigation)
+                    .WithMany(p => p.FollowSeguindoNavigations)
+                    .HasForeignKey(d => d.Seguindo)
+                    .HasConstraintName("FK__Follow__Seguindo__29572725");
             });
 
             modelBuilder.Entity<Post>(entity =>
@@ -70,7 +63,7 @@ namespace Projeto_Senai.Model
                 entity.HasOne(d => d.PublicanteNavigation)
                     .WithMany(p => p.Posts)
                     .HasForeignKey(d => d.Publicante)
-                    .HasConstraintName("FK__Post__Publicante__1273C1CD");
+                    .HasConstraintName("FK__Post__Publicante__267ABA7A");
             });
 
             modelBuilder.Entity<Usuario>(entity =>

@@ -83,32 +83,20 @@ void CriarUsuarioAleatorio()
         senhausuario += Caracteres[rnd.Next(0, Caracteres.Count)];
     }
     usr.Senha = senhausuario;
-    
-    Post post = usr.Postar();
-    context.Add(post);
-
     context.Add(usr);
     context.SaveChanges();
 }
 
 
-void Postar()
-{
-    Post pst = new Post();
-    Random rnd = new Random();
-    pst.Publicante = 5;
-    pst.Conteudo = Objetos[rnd.Next(0, Objetos.Count)] + " são " + Adjetivos[rnd.Next(0, Adjetivos.Count)];
-    pst.Momento = DateTime.Now;
-    context.Add(pst);
-    context.SaveChanges();
-}
 
-void Seguir(int IdUsuario)
-{
-    Follow sgr = new Follow();
-    sgr.SeguindoId = ID;
-    sgr.SeguidoId = Id.Usuario;
-}
+Usuario u = new Usuario();
 CriarUsuarioAleatorio();
-Postar();
-Seguir();
+u.Postar(Objetos, Adjetivos);
+u.Postar(Objetos, Adjetivos);
+u.Postar(Objetos, Adjetivos);
+u.Postar(Objetos, Adjetivos);
+u.Postar(Objetos, Adjetivos);
+u.Postar(Objetos, Adjetivos);
+u.Postar(Objetos, Adjetivos);
+u.Postar(Objetos, Adjetivos);
+u.Seguir(1);
