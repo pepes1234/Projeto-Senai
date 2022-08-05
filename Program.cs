@@ -1,4 +1,5 @@
-﻿using Projeto_Senai.Model;
+﻿
+using Projeto_Senai.Model;
 using System.Collections.Generic;
 
 ExemploSenaiContext context = new ExemploSenaiContext();
@@ -73,17 +74,41 @@ Caracteres.Add(".");
 
 void CriarUsuarioAleatorio()
 {
-    string senhausuario;
+    string senhausuario = "";
     Random rnd = new Random();
     Usuario usr = new Usuario();
     usr.Nome = Nomes[rnd.Next(0, Nomes.Count)] + " " + Sobrenomes[rnd.Next(0, Sobrenomes.Count)];
-    for(var i = 0; i<14; i++)
+    for(var i = 0; i<rnd.Next(10, 16); i++)
     {
         senhausuario += Caracteres[rnd.Next(0, Caracteres.Count)];
     }
     usr.Senha = senhausuario;
+    
+    Post post = usr.Postar();
+    context.Add(post);
+
     context.Add(usr);
     context.SaveChanges();
 }
 
+
+void Postar()
+{
+    Post pst = new Post();
+    Random rnd = new Random();
+    pst.Publicante = 5;
+    pst.Conteudo = Objetos[rnd.Next(0, Objetos.Count)] + " são " + Adjetivos[rnd.Next(0, Adjetivos.Count)];
+    pst.Momento = DateTime.Now;
+    context.Add(pst);
+    context.SaveChanges();
+}
+
+void Seguir(int IdUsuario)
+{
+    Follow sgr = new Follow();
+    sgr.SeguindoId = ID;
+    sgr.SeguidoId = Id.Usuario;
+}
 CriarUsuarioAleatorio();
+Postar();
+Seguir();
