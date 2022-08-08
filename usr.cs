@@ -1,7 +1,7 @@
 namespace Projeto_Senai.Model;
 public partial class Usuario
 {
-    ExemploSenaiContext ctx = new ExemploSenaiContext();
+    ExemploSenaiContext context = new ExemploSenaiContext();
     public void Postar(List<string> Objetos, List<string> Adjetivos)
     {
         Post pst = new Post();
@@ -9,18 +9,20 @@ public partial class Usuario
         pst.Publicante = 1;
         pst.Conteudo = Objetos[rnd.Next(0, Objetos.Count)] + " são " + Adjetivos[rnd.Next(0, Adjetivos.Count)];
         pst.Momento = DateTime.Now;
-        Console.WriteLine(pst.Publicante + " " + pst.Conteudo + " " +  pst.Momento);
-        ctx.Add(pst);
-        ctx.SaveChanges();
+        context.Add(pst);
+        context.SaveChanges();
     }
 
-    public void Seguir(int IdUsuario)
+    public void Seguir(int IdSeguidor, int IdSeguido)
     {
+        Usuario usr = new Usuario();
+        Random rnd = new Random();
         Follow sgr = new Follow();
-        sgr.Seguindo = 1;
-        sgr.Seguido = 1;
         
-        ctx.Add(sgr);
-        ctx.SaveChanges();
+        sgr.Seguindo = IdSeguidor;
+        sgr.Seguido = IdSeguido;
+
+        context.Add(sgr);
+        context.SaveChanges();
     }
 }

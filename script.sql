@@ -14,7 +14,7 @@ go
 create table Usuario(
 	ID int identity primary key,
 	nome varchar(200) not null,
-	Senha varchar(1000) not null
+	Senha varchar(1000) not null	
 );
 go
 

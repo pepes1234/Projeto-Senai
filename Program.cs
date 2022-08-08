@@ -99,4 +99,4 @@ u.Postar(Objetos, Adjetivos);
 u.Postar(Objetos, Adjetivos);
 u.Postar(Objetos, Adjetivos);
 u.Postar(Objetos, Adjetivos);
-u.Seguir(1);
+u.Seguir(2, 2);
