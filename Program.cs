@@ -89,7 +89,16 @@ void CriarUsuarioAleatorio()
 
 
 
+
 Usuario u = new Usuario();
+CriarUsuarioAleatorio();
+
+CriarUsuarioAleatorio();
+CriarUsuarioAleatorio();
+CriarUsuarioAleatorio();
+CriarUsuarioAleatorio();
+CriarUsuarioAleatorio();
+CriarUsuarioAleatorio();
 CriarUsuarioAleatorio();
 u.Postar(Objetos, Adjetivos);
 u.Postar(Objetos, Adjetivos);
@@ -99,4 +108,5 @@ u.Postar(Objetos, Adjetivos);
 u.Postar(Objetos, Adjetivos);
 u.Postar(Objetos, Adjetivos);
 u.Postar(Objetos, Adjetivos);
-u.Seguir(2, 2);
+
+u.Seguir(3, 5);

@@ -1,3 +1,5 @@
+using System;
+
 namespace Projeto_Senai.Model;
 public partial class Usuario
 {
@@ -15,8 +17,6 @@ public partial class Usuario
 
     public void Seguir(int IdSeguidor, int IdSeguido)
     {
-        Usuario usr = new Usuario();
-        Random rnd = new Random();
         Follow sgr = new Follow();
         
         sgr.Seguindo = IdSeguidor;

@@ -7,6 +7,8 @@ namespace Projeto_Senai.Model
     {
         public Usuario()
         {
+            FollowSeguidoNavigations = new HashSet<Follow>();
+            FollowSeguindoNavigations = new HashSet<Follow>();
             Posts = new HashSet<Post>();
         }
 
@@ -14,6 +16,8 @@ namespace Projeto_Senai.Model
         public string Nome { get; set; }
         public string Senha { get; set; }
 
+        public virtual ICollection<Follow> FollowSeguidoNavigations { get; set; }
+        public virtual ICollection<Follow> FollowSeguindoNavigations { get; set; }
         public virtual ICollection<Post> Posts { get; set; }
     }
 }
